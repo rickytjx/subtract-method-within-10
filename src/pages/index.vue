@@ -1,46 +1,40 @@
-<script setup lang="ts" generic="T extends any, O extends any">
-defineOptions({
-  name: 'IndexPage',
-})
-
-const name = ref('')
-
+<script setup lang="ts">
 const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+
+function handleOnStart() {
+  router.push('/math')
 }
 </script>
 
 <template>
-  <div>
-    <div i-carbon-campsite inline-block text-4xl />
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
-    </p>
-
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-
-    <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
-        Go
-      </button>
-    </div>
+  <div class="banner">
+    <img :src="getAssetsImageFile('banner.png')" alt="logo">
+  </div>
+  <div class="start-button" @click="handleOnStart">
+    start
   </div>
 </template>
+
+<style scoped>
+.banner {
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.start-button {
+  width: 80%;
+  height: 100px;
+  margin: 40px auto;
+  border-radius: 40px;
+  background-color: #ffe2a6;
+  display: flex;
+  color: orange;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
